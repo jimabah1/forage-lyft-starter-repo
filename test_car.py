@@ -1,12 +1,11 @@
+import sys
+import os
 import unittest
 from datetime import datetime
+from engine.model.car_factory import CarFactory
+from engine.model.car_model import Calliope, Glissade, Palindrome, Rorschach, Thovex
 
-from engine.model.calliope import Calliope
-from engine.model.glissade import Glissade
-from engine.model.palindrome import Palindrome
-from engine.model.rorschach import Rorschach
-from engine.model.thovex import Thovex
-
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 class TestCalliope(unittest.TestCase):
     def test_battery_should_be_serviced(self):
@@ -43,7 +42,6 @@ class TestCalliope(unittest.TestCase):
         car = Calliope(last_service_date, current_mileage, last_service_mileage)
         self.assertFalse(car.needs_service())
 
-
 class TestGlissade(unittest.TestCase):
     def test_battery_should_be_serviced(self):
         today = datetime.today().date()
@@ -79,7 +77,6 @@ class TestGlissade(unittest.TestCase):
         car = Glissade(last_service_date, current_mileage, last_service_mileage)
         self.assertFalse(car.needs_service())
 
-
 class TestPalindrome(unittest.TestCase):
     def test_battery_should_be_serviced(self):
         today = datetime.today().date()
@@ -110,7 +107,6 @@ class TestPalindrome(unittest.TestCase):
 
         car = Palindrome(last_service_date, warning_light_is_on)
         self.assertFalse(car.needs_service())
-
 
 class TestRorschach(unittest.TestCase):
     def test_battery_should_be_serviced(self):
@@ -147,7 +143,6 @@ class TestRorschach(unittest.TestCase):
         car = Rorschach(last_service_date, current_mileage, last_service_mileage)
         self.assertFalse(car.needs_service())
 
-
 class TestThovex(unittest.TestCase):
     def test_battery_should_be_serviced(self):
         today = datetime.today().date()
@@ -182,7 +177,6 @@ class TestThovex(unittest.TestCase):
 
         car = Thovex(last_service_date, current_mileage, last_service_mileage)
         self.assertFalse(car.needs_service())
-
 
 if __name__ == '__main__':
     unittest.main()
