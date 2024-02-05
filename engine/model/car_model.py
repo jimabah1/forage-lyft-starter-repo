@@ -24,9 +24,11 @@ class SpindlerBattery(Battery):
         super().__init__(last_service_date, current_date)
 
     def needs_service(self):
-        # Specific logic for SpindlerBattery
-        service_threshold_date = self.last_service_date.replace(year=self.last_service_date.year + 2)
-        return service_threshold_date < self.current_date
+        # Updated logic for SpindlerBattery
+        service_threshold_date = self.last_service_date.replace(year=self.last_service_date.year + 3)
+        return service_threshold_date <= self.current_date
+
+        
 
 # NubbinBattery class definition
 class NubbinBattery(Battery):
@@ -38,6 +40,24 @@ class NubbinBattery(Battery):
         service_threshold_date = self.last_service_date.replace(year=self.last_service_date.year + 4)
         return service_threshold_date < self.current_date
 
+# Tire class definition    
+class CarriganTire:
+    def __init__(self, tire_wear_array):
+        self.tire_wear_array = tire_wear_array
+
+    def needs_service(self):
+        # Carrigan tires need service if any value is greater than or equal to 0.9
+        return any(wear >= 0.9 for wear in self.tire_wear_array)
+
+class OctoprimeTire:
+    def __init__(self, tire_wear_array):
+        self.tire_wear_array = tire_wear_array
+
+    def needs_service(self):
+        # Octoprime tires need service if the sum of all values is greater than or equal to 3
+        return sum(self.tire_wear_array) >= 3
+
+# Car model class definition
 class Calliope(CapuletEngine):
     def needs_service(self):
         service_threshold_date = self.last_service_date.replace(year=self.last_service_date.year + 2)
